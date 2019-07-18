@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
+import Button from '@material-ui/core/Button';
+
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
@@ -97,7 +99,7 @@ class SignUpFormBase extends Component {
           placeholder="Confirm Password"
           />
 
-          <button disabled={isInvalid} type="submit">Sign Up</button>
+          <Button variant="contained" disabled={isInvalid} type="submit">Sign Up</Button>
 
           {error && <p>{error.message}</p>}
 

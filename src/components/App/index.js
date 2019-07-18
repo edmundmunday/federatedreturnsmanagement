@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { 
   BrowserRouter as Router,
   Route, Link
  } from 'react-router-dom';
 
 import AppBar from '../AppBar';
+
+import Navigation from '../Navigation';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
@@ -13,9 +15,12 @@ import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 
-import * as ROUTES from '../../constants/routes';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
+import * as ROUTES from '../../constants/routes';
+import { withFirebase } from '../Firebase';
+import { AuthUserContext } from '../Session';
+import { withAuthentication } from '../Session';
+
 
 const App = () => (
 
@@ -27,14 +32,18 @@ const App = () => (
       <hr />
 
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
-      <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-      <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-      <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-      <Route path={ROUTES.HOME} component={HomePage} />
-      <Route path={ROUTES.ACCOUNT} component={HomePage} />
-      <Route path={ROUTES.ADMIN} component={AdminPage} />
+      <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
+      <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
+      <Route exact path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+      <Route exact path={ROUTES.HOME} component={HomePage} />
+      <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
+      <Route exact path={ROUTES.ADMIN} component={AdminPage} />
+
     </div>
   </Router>
+
 );
 
-export default App;
+
+
+export default withAuthentication(App);

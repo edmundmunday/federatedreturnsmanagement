@@ -1,15 +1,29 @@
+// import React
 import React from 'react';
+
+// import the Link component from React Router
 import { Link } from 'react-router-dom';
-import * as ROUTES from '../../constants/routes';
+
+// import material UI components
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
+
+// import my SignOutButton component
 import SignOutButton from '../SignOut';
+
+// import the authUser Context from session
 import { AuthUserContext } from '../Session';
 
+// define the Navigation component
 const Navigation =() => (
+
+  // wrap it in a div
   <div>
+
+    {/* initiate the AuthContext helper, pass in the authUser,
+    if authUser exists, render Authed Navigation, if authUser doesn't exist, render un authed nav */}
     <AuthUserContext.Consumer>
       {authUser => 
         authUser ? 
@@ -20,7 +34,8 @@ const Navigation =() => (
   </div>
 )
 
-
+// define Authed Nav component
+// each button inherets from the React Router 'Link' compoonent and passes in a path
 const NavigationAuth = () => (
 
   <List component="nav">
@@ -49,6 +64,7 @@ const NavigationAuth = () => (
         </Button>
       </ListItemText>
 
+      {/* the final list item injects the SignOutButton component */}
       <ListItemText inset>
         <SignOutButton />
       </ListItemText>
@@ -58,6 +74,8 @@ const NavigationAuth = () => (
 
 );
 
+
+// define the Non Authed Navigation component
 const NavigationNonAuth = () => (
 
   <List component="nav">
